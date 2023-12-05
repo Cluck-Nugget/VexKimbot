@@ -11,36 +11,36 @@
 
 using namespace vex;
 
-bool IsShooterOn;
-bool IsIntakeOn;
+bool isShooterOn;
+bool isIntakeOn;
 
 void init() {
   vexcodeInit();
-  Brain.Screen.print("6636A");
-  Brain.Screen.newLine();
-  Brain.Screen.print("Misto kim!!!");
+  brain1.Screen.print("6636A");
+  brain1.Screen.newLine();
+  brain1.Screen.print("Misto kim!!!");
 }
 
 void stopMotors() {
-  LeftFront.stop();
-  RightFront.stop();
-  LeftBack.stop();
-  RightBack.stop();
-  LeftMiddle.stop();
-  RightMiddle.stop();
+  leftFront.stop();
+  rightFront.stop();
+  leftBack.stop();
+  rightBack.stop();
+  leftMiddle.stop();
+  rightMiddle.stop();
 }
 
 void motorControl() {
-  int y = Controller1.Axis3.position(percent);
-  int x = Controller1.Axis1.position(percent);
+  int y = controller1.Axis3.position(percent);
+  int x = controller1.Axis1.position(percent);
 
   if (x > 5 || y > 5 || x < -5 || y < -5) {
-    LeftFront.spin(forward, x - y, percent);
-    RightFront.spin(reverse, -x - y, percent);
-    LeftBack.spin(forward, x - y, percent);
-    RightBack.spin(reverse, -x - y, percent);
-    LeftMiddle.spin(forward, x - y, percent);
-    RightMiddle.spin(reverse, -x - y, percent);
+    leftFront.spin(forward, x - y, percent);
+    rightFront.spin(reverse, -x - y, percent);
+    leftBack.spin(forward, x - y, percent);
+    rightBack.spin(reverse, -x - y, percent);
+    leftMiddle.spin(forward, x - y, percent);
+    rightMiddle.spin(reverse, -x - y, percent);
   }
   else {
     stopMotors();
@@ -48,37 +48,37 @@ void motorControl() {
 }
 
 void intakeControl() {
-  if (Controller1.ButtonL1.pressing()) {
-    if (!IsIntakeOn == true) {
-      Intake.spin(reverse, 90, percent);  
-      IsIntakeOn = true;
+  if (controller1.ButtonL1.pressing()) {
+    if (!isIntakeOn == true) {
+      intake.spin(reverse, 90, percent);  
+      isIntakeOn = true;
     }
     else {
-      Intake.stop();
-      IsIntakeOn = false;
+      intake.stop();
+      isIntakeOn = false;
     }
   }
-  if (Controller1.ButtonL2.pressing()) {
-    if (!IsIntakeOn == true) {
-      Intake.spin(forward, 90, percent);  
-      IsIntakeOn = true;
+  if (controller1.ButtonL2.pressing()) {
+    if (!isIntakeOn == true) {
+      intake.spin(forward, 90, percent);  
+      isIntakeOn = true;
     }
     else {
-      Intake.stop();
-      IsIntakeOn = false;
+      intake.stop();
+      isIntakeOn = false;
     }
   }
 }
 
-void ShooterControl() {
-  if (Controller1.ButtonR1.pressing()) {
-    if (!IsShooterOn == true) {
-      Shooter.spin(reverse, 90, percent);  
-      IsShooterOn = true;
+void shooterControl() {
+  if (controller1.ButtonR1.pressing()) {
+    if (!isShooterOn == true) {
+      shooter.spin(reverse, 90, percent);  
+      isShooterOn = true;
     } 
     else {
-      Shooter.stop();
-      IsShooterOn = false;
+      shooter.stop();
+      isShooterOn = false;
     }
   }
 }
@@ -88,7 +88,7 @@ int main() {
   while (true) {
     motorControl();
     intakeControl();
-    ShooterControl();
+    shooterControl();
     vex::task::sleep(10);
   }
 }
