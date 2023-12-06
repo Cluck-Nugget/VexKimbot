@@ -11,17 +11,18 @@
 
 using namespace vex;
 
-bool isShooterOn;
-bool isIntakeOn;
-
-void init() {
+// Function to initialize the bot
+void init()
+{
   vexcodeInit();
   brain1.Screen.print("6636A");
   brain1.Screen.newLine();
   brain1.Screen.print("Misto kim!!!");
 }
 
-void stopMotors() {
+// Function to stop all motors
+void stopMotors()
+{
   leftFront.stop();
   rightFront.stop();
   leftBack.stop();
@@ -30,7 +31,9 @@ void stopMotors() {
   rightMiddle.stop();
 }
 
-void motorControl() {
+// Function to be able to control the drivetrain
+void motorControl()
+{
   int y = controller1.Axis3.position(percent);
   int x = controller1.Axis1.position(percent);
 
@@ -42,53 +45,51 @@ void motorControl() {
     leftMiddle.spin(forward, x - y, percent);
     rightMiddle.spin(reverse, -x - y, percent);
   }
-  else {
+  else
+  {
     stopMotors();
   }
 }
 
-void intakeControl() {
-  if (controller1.ButtonL1.pressing()) {
-    if (!isIntakeOn == true) {
-      intake.spin(reverse, 90, percent);  
-      isIntakeOn = true;
-    }
-    else {
-      intake.stop();
-      isIntakeOn = false;
-    }
+// Function to be able to control the intake
+void intakeControl()
+{
+  if (controller1.ButtonL1.pressing() && !intake.isSpinning())
+  {
+    intake.spin(reverse, 90, percent);
   }
-  if (controller1.ButtonL2.pressing()) {
-    if (!isIntakeOn == true) {
-      intake.spin(forward, 90, percent);  
-      isIntakeOn = true;
-    }
-    else {
-      intake.stop();
-      isIntakeOn = false;
-    }
+  else if (controller1.ButtonL2.pressing() && !intake.isSpinning())
+  {
+    intake.spin(forward, 90, percent);
+  }
+  else
+  {
+    intake.stop();
   }
 }
 
-void shooterControl() {
-  if (controller1.ButtonR1.pressing()) {
-    if (!isShooterOn == true) {
-      shooter.spin(reverse, 90, percent);  
-      isShooterOn = true;
-    } 
-    else {
-      shooter.stop();
-      isShooterOn = false;
-    }
+// Function to be able to control the shooter
+void shooterControl()
+{
+  if (controller1.ButtonR1.pressing() && !shooter.isSpinning())
+  {
+    shooter.spin(forward, 90, percent);  
+  }
+  else
+  {
+    shooter.stop();
   }
 }
 
-int main() {
+// Main function that is run when the program starts
+int main()
+{
   init();
-  while (true) {
+  while (true)
+  {
     motorControl();
     intakeControl();
     shooterControl();
-    vex::task::sleep(10);
+    task::sleep(10);
   }
 }
