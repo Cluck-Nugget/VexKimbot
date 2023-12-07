@@ -6,6 +6,14 @@
 #include "vex.h"
 #include "intake.h"
 
+// Function to initialize the intake motor.
+void intakeInit() {
+  // Reset the intake position.
+  intake.resetPosition();
+  // Set the stopping method of the intake motor to coast.
+  intake.setStopping(coast);
+}
+
 // Function to be able to control the intake.
 
 // Documentation:
@@ -23,7 +31,7 @@ void intakeControl(float intakeSpeed, float outtakeSpeed)
   {
     intake.spin(forward, outtakeSpeed*100, percent);
   }
-  // Stop the intake if the driver is not holding any buttons.
+  // Stop the intake if L1 or L2 is not being pressed.
   else
   {
     intake.stop();

@@ -16,7 +16,7 @@ motor rightMiddle = motor(PORT2, ratio6_1, false);
 motor rightBack = motor(PORT3, ratio6_1, false);
 motor intake = motor(PORT20, ratio18_1, false);
 controller controller1 = controller(primary);
-motor shooter = motor(PORT5, ratio36_1, false);
+motor shooter = motor(PORT5, ratio36_1, true);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

@@ -6,6 +6,14 @@
 #include "vex.h"
 #include "shooter.h"
 
+// Function to initialize the shooter motor.
+void shooterInit() {
+  // Reset the shooter motor position.
+  shooter.resetPosition();
+  // Set the shooter stopping method to coast.
+  shooter.setStopping(coast);
+}
+
 // Function to be able to control the shooter.
 
 // Documentation:
@@ -17,6 +25,7 @@ void shooterControl(float shooterSpeed)
   {
     shooter.spin(reverse, shooterSpeed*100, percent);  
   }
+  // If R1 is not pressing, then stop the shooter.
   else
   {
     shooter.stop();

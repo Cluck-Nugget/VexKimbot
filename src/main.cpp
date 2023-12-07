@@ -15,6 +15,9 @@ using namespace vex;
 void init()
 {
   vexcodeInit();
+  drivetrainInit();
+  intakeInit();
+  shooterInit();
   // Misto kim!!!!
   brain1.Screen.print("6636A");
   brain1.Screen.newLine();
