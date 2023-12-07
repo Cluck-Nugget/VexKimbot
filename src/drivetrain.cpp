@@ -8,7 +8,8 @@
 #include "drivetrain.h"
 
 // Function to set all drivetrain motor stopping methods.
-void drivetrainInit() {
+void drivetrainInit()
+{
   // Individually reset each motor position.
   leftFront.resetPosition();
   leftMiddle.resetPosition();
@@ -46,17 +47,17 @@ void stopDrivetrain()
 void motorControl(float driveSpeed, float turnSpeed, float deadzone)
 {
   // Set the x and y intagers to the position of axis1*turnSpeed and axis3*turnSpeed respectively.
-  int x = controller1.Axis1.position(percent)*turnSpeed;
-  int y = controller1.Axis3.position(percent)*driveSpeed;
+  int axisX = controller1.Axis1.position(percent)*turnSpeed;
+  int axisY = controller1.Axis3.position(percent)*driveSpeed;
 
   // Use motion and turning logic based on joystick positions to allow driving while not in the deadzone.
-  if (x > deadzone || y > deadzone || x < -deadzone || y < -deadzone) {
-    leftFront.spin(reverse, x + y, percent);
-    rightFront.spin(forward, -x + y, percent);
-    leftBack.spin(reverse, x + y, percent);
-    rightBack.spin(forward, -x + y, percent);
-    leftMiddle.spin(reverse, x + y, percent);
-    rightMiddle.spin(forward, -x + y, percent);
+  if (axisX > deadzone || axisY > deadzone || axisX < -deadzone || axisY < -deadzone) {
+    leftFront.spin(reverse, axisX + axisY, percent);
+    rightFront.spin(forward, -axisX + axisY, percent);
+    leftBack.spin(reverse, axisX + axisY, percent);
+    rightBack.spin(forward, -axisX + axisY, percent);
+    leftMiddle.spin(reverse, axisX + axisY, percent);
+    rightMiddle.spin(forward, -axisX + axisY, percent);
   }
   // If the joysticks are in the deadzone, then stop all drivetrain motors.
   else

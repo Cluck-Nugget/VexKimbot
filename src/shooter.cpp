@@ -7,7 +7,8 @@
 #include "shooter.h"
 
 // Function to initialize the shooter motor.
-void shooterInit() {
+void shooterInit()
+{
   // Reset the shooter motor position.
   shooter.resetPosition();
   // Set the shooter stopping method to coast.

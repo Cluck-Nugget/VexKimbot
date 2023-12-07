@@ -7,7 +7,8 @@
 #include "intake.h"
 
 // Function to initialize the intake motor.
-void intakeInit() {
+void intakeInit()
+{
   // Reset the intake position.
   intake.resetPosition();
   // Set the stopping method of the intake motor to coast.

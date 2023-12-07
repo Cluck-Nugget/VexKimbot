@@ -8,6 +8,7 @@
 #include "drivetrain.h"
 #include "intake.h"
 #include "shooter.h"
+#include "autonomous.h"
 
 using namespace vex;
 
@@ -18,10 +19,6 @@ void init()
   drivetrainInit();
   intakeInit();
   shooterInit();
-  // Misto kim!!!!
-  brain1.Screen.print("6636A");
-  brain1.Screen.newLine();
-  brain1.Screen.print("Misto kim!!!");
 }
 
 // Main function that runs when the program starts.
