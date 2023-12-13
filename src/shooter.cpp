@@ -5,6 +5,7 @@
 
 #include "vex.h"
 #include "shooter.h"
+#include "global.h"
 
 // Function to initialize the shooter motor.
 void shooterInit()

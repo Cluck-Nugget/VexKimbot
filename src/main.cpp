@@ -9,17 +9,9 @@
 #include "intake.h"
 #include "shooter.h"
 #include "autonomous.h"
+#include "global.h"
 
 using namespace vex;
-
-// Function to initialize the bot.
-void init()
-{
-  vexcodeInit();
-  drivetrainInit();
-  intakeInit();
-  shooterInit();
-}
 
 // Main function that runs when the program starts.
 int main()

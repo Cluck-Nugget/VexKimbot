@@ -6,6 +6,7 @@
 
 #include "vex.h"
 #include "drivetrain.h"
+#include "global.h"
 
 // Function to set all drivetrain motor stopping methods.
 void drivetrainInit()
@@ -24,18 +25,6 @@ void drivetrainInit()
   rightFront.setStopping(brake);
   rightMiddle.setStopping(brake);
   rightBack.setStopping(brake);
-}
-
-// Function to stop all drivetrain motors.
-void stopDrivetrain()
-{
-  // Individually stop every drivetrain motor.
-  leftFront.stop();
-  rightFront.stop();
-  leftBack.stop();
-  rightBack.stop();
-  leftMiddle.stop();
-  rightMiddle.stop();
 }
 
 // Function to control the drivetrain.

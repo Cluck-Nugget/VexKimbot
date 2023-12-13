@@ -5,6 +5,7 @@
 
 #include "vex.h"
 #include "intake.h"
+#include "global.h"
 
 // Function to initialize the intake motor.
 void intakeInit()

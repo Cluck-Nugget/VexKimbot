@@ -1,3 +1,3 @@
 #include "vex.h"
 
-float calculateDistance();
+void move(int speed, float distance);
