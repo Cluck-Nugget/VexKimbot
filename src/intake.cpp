@@ -19,6 +19,7 @@ void intakeInit()
 // Function to be able to control the intake.
 
 // Documentation:
+
 // First value: Should be inbetween 0 and 1 to represent intake speed.
 // Second value: Should be inbetween 0 and 1 to represent outtake speed.
 void intakeControl(float intakeSpeed, float outtakeSpeed)

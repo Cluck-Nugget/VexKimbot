@@ -12,12 +12,7 @@
 void drivetrainInit()
 {
   // Individually reset each motor position.
-  leftFront.resetPosition();
-  leftMiddle.resetPosition();
-  leftBack.resetPosition();
-  rightFront.resetPosition();
-  rightMiddle.resetPosition();
-  rightBack.resetPosition();
+  resetDrivetrain();
   // Individually change each stopping method.
   leftFront.setStopping(brake);
   leftMiddle.setStopping(brake);
@@ -30,6 +25,7 @@ void drivetrainInit()
 // Function to control the drivetrain.
 
 // Documentation:
+
 // First value: Should be inbetween 0 and 1 to represent drive speed.
 // Second value: Should be inbetween 0 and 1 to represent turn speed.
 // Third value: Should be inbetween 0 and 100 to represent the deadzone in percent.

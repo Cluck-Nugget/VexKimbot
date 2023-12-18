@@ -19,6 +19,7 @@ void shooterInit()
 // Function to be able to control the shooter.
 
 // Documentation:
+
 // First value: Should be inbetween 0 and 1 to represent shooter drawback speed.
 void shooterControl(float shooterSpeed)
 {

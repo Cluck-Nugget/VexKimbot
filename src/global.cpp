@@ -17,7 +17,6 @@ void init()
 // Function to stop all drivetrain motors.
 void stopDrivetrain()
 {
-  // Individually stop every drivetrain motor.
   leftFront.stop();
   rightFront.stop();
   leftBack.stop();
@@ -52,6 +51,7 @@ double averageAngle()
 }
 
 // Documentation:
+
 // First value: Should be a number that is the angle of the wheel.
 // Second value: The diameter of the wheel.
 float calculateDistance(double angle, float diameter)
@@ -64,6 +64,12 @@ float calculateDistance(double angle, float diameter)
 }
 
 // Function to check if a value is in a range.
+
+// Documentation:
+
+// First value: The number.
+// Second value: Minimum.
+// Third value: Maximum.
 bool isInRange(float number, float min, float max)
 {
   if (number < max && number > min)
@@ -77,6 +83,12 @@ bool isInRange(float number, float min, float max)
 }
 
 // Function to spin all drivetrain wheels.
+
+// Documentation:
+
+// First value: The direction (forward or reverse).
+// Second value: The speed (depends of value 3).
+// Third value: The unit of speed.
 void spinDrivetrain(directionType direction, int speed, percentUnits speedUnit)
 {
   rightFront.spin(direction, speed, speedUnit);
