@@ -9,27 +9,16 @@
 
 // Documentation:
 
-// First value: Should be inbetween 0 and 100.
+// First value: Should be inbetween -100 and 100.
 // Second value: The distance that the drivetrain should move in inches.
-void move(int speed, float distance)
+void move(float distance, int speed)
 {
     // Set variables.
     float range = 1;
-    directionType isReverse;
-
     // Reset the drivetrain motor positions.
     resetDrivetrain();
-    // Set the isReverse property appropriately.
-    if (distance > 0)
-    {
-        isReverse = forward;
-    }
-    else
-    {
-        isReverse = reverse;
-    }
     // Spin the drivetrain in the correct direction.
-    spinDrivetrain(isReverse, speed, percent);
+    driveForward(forward, speed, percent);
     while (true)
     {
         // Stop the drivetrain if it's distance moved the correct distance.

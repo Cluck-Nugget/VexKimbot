@@ -89,7 +89,7 @@ bool isInRange(float number, float min, float max)
 // First value: The direction (forward or reverse).
 // Second value: The speed (depends of value 3).
 // Third value: The unit of speed.
-void spinDrivetrain(directionType direction, int speed, percentUnits speedUnit)
+void driveForward(directionType direction, int speed, percentUnits speedUnit)
 {
   rightFront.spin(direction, speed, speedUnit);
   rightMiddle.spin(direction, speed, speedUnit);
