@@ -52,15 +52,12 @@ double averageAngle()
 
 // Documentation:
 
-// First value: Should be a number that is the angle of the wheel.
-// Second value: The diameter of the wheel.
-float calculateDistance(double angle, float diameter)
+// First value: The amount of inches.
+float calculateFuturePosition(double inches)
 {
-    // Calculate the radius from the diameter.
-    float radius = diameter/2;
-    double circumfrance = (2*M_PI)*radius;
-    // Return the distance in inches.
-    return (circumfrance/360)*angle;
+  float degreesToTravel = inches*(90/M_PI);
+  // Calculate the radius from the diameter.
+  return rightFront.position(degrees) + degreesToTravel;
 }
 
 // Function to check if a value is in a range.

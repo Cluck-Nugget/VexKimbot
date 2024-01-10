@@ -7,25 +7,14 @@
 #include "autonomous.h"
 #include "global.h"
 
-// Documentation:
-
-// First value: Should be inbetween -100 and 100.
-// Second value: The distance that the drivetrain should move in inches.
-void move(float distance, int speed)
+void move(double inches, double speed)
 {
-    // Set variables.
-    float range = 1;
-    // Reset the drivetrain motor positions.
-    resetDrivetrain();
-    // Spin the drivetrain in the correct direction.
     driveForward(forward, speed, percent);
-    while (true)
+    while (rightFront.position(degrees) < calculateFuturePosition(inches))
     {
-        // Stop the drivetrain if it's distance moved the correct distance.
-        if (isInRange(calculateDistance(averageAngle(), 4), distance - range/2, distance + range/2))
+        if (rightFront.isSpinning())
         {
-            stopDrivetrain();
-            break;
+            driveForward(forward, speed, percent);
         }
     }
 }
