@@ -9,12 +9,26 @@
 
 void move(double inches, double speed)
 {
-    driveForward(forward, speed, percent);
-    while (rightFront.position(degrees) < calculateFuturePosition(inches))
+    while (true)
     {
-        if (rightFront.isSpinning())
+        if (inches > 0)
         {
             driveForward(forward, speed, percent);
+            if (rightFront.position(degrees) > calculateFuturePosition(inches))
+            {
+                stopDrivetrain();
+                break;
+            }
         }
+        else
+        {
+            driveForward(reverse, speed, percent);
+            if (rightFront.position(degrees) < calculateFuturePosition(inches))
+            {
+                stopDrivetrain();
+                break;
+            } 
+        }
+        
     }
 }
