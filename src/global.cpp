@@ -50,14 +50,15 @@ double averageAngle()
     return (rf + rm + rb + lf + lm +lb)/6;
 }
 
+// Gearing is 60:36 200 RMP motors
+
 // Documentation:
 
 // First value: The amount of inches.
 float calculateFuturePosition(double inches)
 {
-  float degreesToTravel = inches*(90/M_PI);
-  // Calculate the radius from the diameter.
-  return rightFront.position(degrees) + degreesToTravel;
+  // Calculate the position.
+  return rightFront.position(degrees) + (inches*58);
 }
 
 // Function to check if a value is in a range.
@@ -94,4 +95,26 @@ void driveForward(directionType direction, int speed, percentUnits speedUnit)
   leftFront.spin(direction, speed, speedUnit);
   leftMiddle.spin(direction, speed, speedUnit);
   leftBack.spin(direction, speed, speedUnit);
+}
+
+void turn(bool isRight, double speed, percentUnits speedUnit)
+{
+  if (isRight)
+  {
+    rightFront.spin(reverse, speed, speedUnit);
+    rightMiddle.spin(reverse, speed, speedUnit);
+    rightBack.spin(reverse, speed, speedUnit);
+    leftFront.spin(forward, speed, speedUnit);
+    leftMiddle.spin(forward, speed, speedUnit);
+    leftBack.spin(forward, speed, speedUnit);
+  }
+  else
+  {
+    rightFront.spin(forward, speed, speedUnit);
+    rightMiddle.spin(forward, speed, speedUnit);
+    rightBack.spin(forward, speed, speedUnit);
+    leftFront.spin(reverse, speed, speedUnit);
+    leftMiddle.spin(reverse, speed, speedUnit);
+    leftBack.spin(reverse, speed, speedUnit);
+  }
 }

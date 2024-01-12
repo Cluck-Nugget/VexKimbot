@@ -7,3 +7,4 @@ double averageAngle();
 float calculateFuturePosition(double inches);
 bool isInRange(float number, float min, float max);
 void driveForward(directionType direction, int speed, percentUnits speedUnit);
+void turn(bool isRight, double speed, percentUnits speedUnit);

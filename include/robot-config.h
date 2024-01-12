@@ -12,6 +12,7 @@ extern motor rightBack;
 extern motor intake;
 extern controller controller1;
 extern motor shooter;
+extern inertial sensor;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
