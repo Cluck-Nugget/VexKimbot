@@ -23,14 +23,8 @@ void shooterInit()
 // First value: Should be inbetween 0 and 1 to represent shooter drawback speed.
 void shooterControl(float shooterSpeed)
 {
-  // If R1 is pressing, then spin the shooter to add force to the rubber bands. Make sure to not spin if it is already.
-  if (controller1.ButtonR1.pressing() && !shooter.isSpinning())
+  if (controller1.ButtonR1.pressing())
   {
-    shooter.spin(reverse, shooterSpeed*100, percent);  
-  }
-  // If R1 is not pressing, then stop the shooter.
-  else
-  {
-    shooter.stop();
+    shooter.spin(re)
   }
 }

@@ -17,7 +17,7 @@ motor rightBack = motor(PORT19, ratio18_1, false);
 motor intake = motor(PORT20, ratio18_1, false);
 controller controller1 = controller(primary);
 motor shooter = motor(PORT6, ratio18_1, false);
-inertial sensor = inertial(PORT1);
+inertial sensor = inertial(PORT3);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

@@ -77,8 +77,15 @@ void turnTo(double angle, double speed)
 
 void auton()
 {
-    move(20, 50);
-    move(-20, 50);
+    turnDegrees(30, 50);
+    vex::task::sleep(1000);
+    turnDegrees(30, -50);
+    vex::task::sleep(1000);
     turnDegrees(90, 50);
-    turnDegrees(-90, 50);
+    vex::task::sleep(1000);
+    turnDegrees(90, -50);
+    vex::task::sleep(1000);
+    turnDegrees(180, 50);
+    vex::task::sleep(1000);
+    turnDegrees(180, -50);
 }
