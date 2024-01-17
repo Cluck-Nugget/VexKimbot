@@ -19,13 +19,13 @@ int main()
   // Initialize the robot.
   init();
   // Go into main loop that allows you to control all functions of the robot.
-  auton();
-  // while (true)
-  // {
-  //   motorControl(1, 1, 5);
-  //   intakeControl(0.9, 0.9);
-  //   shooterControl(0.7);
-  //   task::sleep(10);
-  // }
-  // return 0;
+  //auton();
+  while (true)
+  {
+    motorControl(1, 1, 5);
+    intakeControl(0.9, 0.9);
+    shooterControl(0.7);
+    task::sleep(10);
+  }
+  return 0;
 }
