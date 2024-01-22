@@ -37,11 +37,11 @@ void motorControl(float driveSpeed, float turnSpeed, float deadzone)
 
   // Use motion and turning logic based on joystick positions to allow driving while not in the deadzone.
   if (axisX > deadzone || axisY > deadzone || axisX < -deadzone || axisY < -deadzone) {
-    leftFront.spin(reverse, axisX + axisY, percent);
+    leftFront.spin(forward, axisX + axisY, percent);
     rightFront.spin(forward, -axisX + axisY, percent);
-    leftBack.spin(reverse, axisX + axisY, percent);
+    leftBack.spin(forward, axisX + axisY, percent);
     rightBack.spin(forward, -axisX + axisY, percent);
-    leftMiddle.spin(reverse, axisX + axisY, percent);
+    leftMiddle.spin(forward, axisX + axisY, percent);
     rightMiddle.spin(forward, -axisX + axisY, percent);
   }
   // If the joysticks are in the deadzone, then stop all drivetrain motors.

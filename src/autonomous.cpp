@@ -46,7 +46,7 @@ void turnDegrees(double angle, double speed) {
         {
             turn(false, speed, percent);
         }
-        stopDrivetrain;
+        stopDrivetrain();
     }
 }
 

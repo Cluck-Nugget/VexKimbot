@@ -7,6 +7,8 @@
 #include "shooter.h"
 #include "global.h"
 
+int R1State = 0;
+
 // Function to initialize the shooter motor.
 void shooterInit()
 {
@@ -20,11 +22,17 @@ void shooterInit()
 
 // Documentation:
 
-// First value: Should be inbetween 0 and 1 to represent shooter drawback speed.
+// First value: Should be in-between 0 and 1 to represent shooter drawback speed.
 void shooterControl(float shooterSpeed)
 {
-  if (controller1.ButtonR1.pressing())
+  if ((controller1.ButtonR1.pressing()) && (R1State == 0))
   {
-    shooter.spin(re)
+    R1State = 1;
+    shooter.spin(reverse, shooterSpeed, percent);
+  }
+  if ((!controller1.ButtonR1.pressing()) && (R1State == 1))
+  {
+    R1State = 0;
+    shooter.stop();
   }
 }

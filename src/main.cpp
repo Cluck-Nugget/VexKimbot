@@ -20,7 +20,6 @@ int main()
   init();
   // Go into main loop that allows you to control all functions of the robot.
   //auton();
-  auton();
   while (true)
   {
     motorControl(1, 1, 5);
