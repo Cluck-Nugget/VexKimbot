@@ -7,8 +7,6 @@
 #include "shooter.h"
 #include "global.h"
 
-int R1State = 0;
-
 // Function to initialize the shooter motor.
 void shooterInit()
 {
@@ -25,14 +23,14 @@ void shooterInit()
 // First value: Should be in-between 0 and 1 to represent shooter drawback speed.
 void shooterControl(float shooterSpeed)
 {
-  if ((controller1.ButtonR1.pressing()) && (R1State == 0))
+  // If R1 is pressing, then spin the shooter to add force to the rubber bands. Make sure to not spin if it is already.
+  if (controller1.ButtonR1.pressing() && !shooter.isSpinning())
   {
-    R1State = 1;
-    shooter.spin(reverse, shooterSpeed, percent);
+    shooter.spin(forward, shooterSpeed*100, percent);
   }
-  if ((!controller1.ButtonR1.pressing()) && (R1State == 1))
+  // If R1 is not pressing, then stop the shooter.
+  else
   {
-    R1State = 0;
     shooter.stop();
   }
 }

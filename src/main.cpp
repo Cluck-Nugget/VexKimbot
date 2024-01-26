@@ -13,13 +13,10 @@
 
 using namespace vex;
 
-// Main function that runs when the program starts.
-int main()
-{
-  // Initialize the robot.
-  init();
-  // Go into main loop that allows you to control all functions of the robot.
-  //auton();
+
+competition comp;
+
+void drivecontrol() {
   while (true)
   {
     motorControl(1, 1, 5);
@@ -27,5 +24,16 @@ int main()
     shooterControl(0.7);
     task::sleep(10);
   }
-  return 0;
+}
+
+// Main function that runs when the program starts.
+int main()
+{
+  // Initialize the robot.
+  init();
+  // Go into main loop that allows you to control all functions of the robot.
+  comp.autonomous(skillsAuton);
+  comp.drivercontrol(drivecontrol);
+  // auton();
+  // return 0;
 }

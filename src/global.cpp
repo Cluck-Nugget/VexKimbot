@@ -12,6 +12,7 @@ void init()
   drivetrainInit();
   intakeInit();
   shooterInit();
+  autonInit();
 }
 
 // Function to stop all drivetrain motors.
@@ -99,7 +100,7 @@ void driveForward(directionType direction, int speed, percentUnits speedUnit)
 
 void turn(bool isRight, double speed, percentUnits speedUnit)
 {
-  if (isRight)
+  if (isRight == true)
   {
     rightFront.spin(reverse, speed, speedUnit);
     rightMiddle.spin(reverse, speed, speedUnit);

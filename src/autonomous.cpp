@@ -7,6 +7,21 @@
 #include "autonomous.h"
 #include "global.h"
 
+void autonInit()
+{
+    sensor.startCalibration(3000);
+    while (sensor.isCalibrating())
+    {
+        vex::task::sleep(100);
+    }
+    sensor.resetHeading();
+    sensor.resetRotation();
+
+    printf("Init Sensor Heading:%f \n", sensor.heading(degrees));
+    vex::task::sleep(1000);
+    printf("After Sensor Heading:%f \n", sensor.heading(degrees));
+}
+
 void move(double inches, double speed)
 {
     double futurePosition = calculateFuturePosition(inches);
@@ -30,62 +45,70 @@ void move(double inches, double speed)
                 break;
             } 
         }
+        vex::task::sleep(10);
     }
 }
 
-void turnDegrees(double angle, double speed) {
+int debugCount = 0;
+void turnDegrees(double angle, double speed)
+{
+    debugCount = 0;
     // right is positive, left is negative
     double target = sensor.rotation(degrees) + angle;
     if (angle > 0) {
         while (sensor.rotation(degrees) < target) {
+            // if (debugCount++ % 20 == 0) {
+            //     printf("Right Turn:%f \n", sensor.rotation(degrees));
+            // }
             turn(true, speed, percent);
+            vex::task::sleep(10);
         }
+        printf("Stopped \n");
         stopDrivetrain();
     } else if (angle < 0) {
         while (sensor.rotation(degrees) > target)
         {
+            // if (debugCount++ % 20 == 0) {
+            //     printf("Left Turn:%f \n", sensor.rotation(degrees));
+            // }
             turn(false, speed, percent);
+            vex::task::sleep(10);
         }
+        printf("Stopped \n");
         stopDrivetrain();
     }
 }
 
-void turnTo(double angle, double speed)
+void skillsAuton()
 {
-    while (true)
-    {
-        if (sensor.rotation(degrees) < angle)
-        {
-            turn(true, speed, percent);
-            if (sensor.rotation(degrees) <= angle)
-            {
-                stopDrivetrain();
-                break;
-            }
-        }
-        else
-        {
-            turn(false, speed, percent);
-            if (sensor.rotation(degrees) >= angle)
-            {
-                stopDrivetrain();
-                break;
-            }
-        }
-    }
+    move(4, 15);
+    turnDegrees(-100, 10);
+    move(-2, 30);
+    shooter.spin(forward, 95, percent);
 }
 
 void auton()
 {
-    turnDegrees(30, 50);
+    move(-15, 100);
+}
+
+void testTurn(double angle, double speed)
+{
+    double currentRotation = sensor.rotation(degrees);
+    turnDegrees(angle, speed);
     vex::task::sleep(1000);
-    turnDegrees(30, -50);
-    vex::task::sleep(1000);
-    turnDegrees(90, 50);
-    vex::task::sleep(1000);
-    turnDegrees(90, -50);
-    vex::task::sleep(1000);
-    turnDegrees(180, 50);
-    vex::task::sleep(1000);
-    turnDegrees(180, -50);
+    double afterRotation = sensor.rotation(degrees);
+    double error = (currentRotation + angle) - sensor.rotation(degrees);
+    printf("Speed:%f Before:%f After:%f Turn Error:%f \n", speed, currentRotation, afterRotation, error);
+}
+
+void testAuton()
+{
+    testTurn(180, 10);
+    testTurn(180, 15);
+    testTurn(180, 20);
+    testTurn(180, 25);
+    testTurn(180, 30);
+    testTurn(180, 35);
+    testTurn(180, 40);
 }
