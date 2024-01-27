@@ -23,7 +23,7 @@ inertial sensor = inertial(PORT3);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
-bool RemoteControlCodeEnabled = true;
+bool RemoteControlCodeEnabled = false;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

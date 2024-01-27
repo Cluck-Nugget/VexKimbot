@@ -18,6 +18,7 @@ competition comp;
 // Main function that runs when the program starts.
 int main()
 {
+  printf("Test\n");
   // Initialize the robot.
   init();
   // Go into main loop that allows you to control all functions of the robot.
