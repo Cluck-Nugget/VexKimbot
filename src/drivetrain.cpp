@@ -24,11 +24,13 @@ void drivetrainInit()
 
 // Function to control the drivetrain.
 
-// Documentation:
+/*
+Documentation:
 
-// First value: Should be inbetween 0 and 1 to represent drive speed.
-// Second value: Should be inbetween 0 and 1 to represent turn speed.
-// Third value: Should be inbetween 0 and 100 to represent the deadzone in percent.
+First value: Should be inbetween 0 and 1 to represent drive speed.
+Second value: Should be inbetween 0 and 1 to represent turn speed.
+Third value: Should be inbetween 0 and 100 to represent the deadzone in percent.
+*/
 void motorControl(float driveSpeed, float turnSpeed, float deadzone)
 {
   // Set the x and y intagers to the position of axis1*turnSpeed and axis3*turnSpeed respectively.
@@ -36,7 +38,8 @@ void motorControl(float driveSpeed, float turnSpeed, float deadzone)
   int axisY = controller1.Axis3.position(percent)*driveSpeed;
 
   // Use motion and turning logic based on joystick positions to allow driving while not in the deadzone.
-  if (axisX > deadzone || axisY > deadzone || axisX < -deadzone || axisY < -deadzone) {
+  if (axisX > deadzone || axisY > deadzone || axisX < -deadzone || axisY < -deadzone)
+  {
     leftFront.spin(forward, axisX + axisY, percent);
     rightFront.spin(forward, -axisX + axisY, percent);
     leftBack.spin(forward, axisX + axisY, percent);

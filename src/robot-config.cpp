@@ -4,6 +4,8 @@ using namespace vex;
 using signature = vision::signature;
 using code = vision::code;
 
+// Gearing is 60:36 200 RMP motors
+
 // A global instance of brain used for printing to the V5 Brain screen
 brain  brain1;
 

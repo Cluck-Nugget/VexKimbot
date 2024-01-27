@@ -51,11 +51,13 @@ double averageAngle()
     return (rf + rm + rb + lf + lm +lb)/6;
 }
 
-// Gearing is 60:36 200 RMP motors
+// Function to calculate future angle depending on inches.
 
-// Documentation:
+/*
+Documentation:
 
-// First value: The amount of inches.
+First value: The amount of inches.
+*/
 float calculateFuturePosition(double inches)
 {
   // Calculate the position.
@@ -64,11 +66,13 @@ float calculateFuturePosition(double inches)
 
 // Function to check if a value is in a range.
 
-// Documentation:
+/*
+Documentation:
 
-// First value: The number.
-// Second value: Minimum.
-// Third value: Maximum.
+First value: The number.
+Second value: Minimum.
+Third value: Maximum.
+*/
 bool isInRange(float number, float min, float max)
 {
   if (number < max && number > min)
@@ -83,11 +87,13 @@ bool isInRange(float number, float min, float max)
 
 // Function to spin all drivetrain wheels.
 
-// Documentation:
+/*
+Documentation:
 
-// First value: The direction (forward or reverse).
-// Second value: The speed (depends of value 3).
-// Third value: The unit of speed.
+First value: The direction (forward or reverse).
+Second value: The speed (depends of value 3).
+Third value: The unit of speed.
+*/
 void driveForward(directionType direction, int speed, percentUnits speedUnit)
 {
   rightFront.spin(direction, speed, speedUnit);
@@ -98,6 +104,15 @@ void driveForward(directionType direction, int speed, percentUnits speedUnit)
   leftBack.spin(direction, speed, speedUnit);
 }
 
+// Function to turn the robot in a direction.
+
+/*
+Documentation:
+
+First value: If it is true, go right instead of left.
+Second value: Speed in percent.
+Third value: Percent unit.
+*/
 void turn(bool isRight, double speed, percentUnits speedUnit)
 {
   if (isRight == true)
@@ -117,5 +132,17 @@ void turn(bool isRight, double speed, percentUnits speedUnit)
     leftFront.spin(reverse, speed, speedUnit);
     leftMiddle.spin(reverse, speed, speedUnit);
     leftBack.spin(reverse, speed, speedUnit);
+  }
+}
+
+// Function to control the entire robot.
+void driveControl()
+{
+  while (true)
+  {
+    motorControl(1, 1, 5);
+    intakeControl(0.9, 0.9);
+    shooterControl(0.7);
+    task::sleep(10);
   }
 }

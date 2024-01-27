@@ -7,26 +7,40 @@
 #include "autonomous.h"
 #include "global.h"
 
+// Initializes auton.
 void autonInit()
 {
+    // Calibrate the inertial sensor.
     sensor.startCalibration(3000);
     while (sensor.isCalibrating())
     {
         vex::task::sleep(100);
     }
+
+    // Reset the sensor rotation and heading.
     sensor.resetHeading();
     sensor.resetRotation();
 
+    // Print the sensor error.
     printf("Init Sensor Heading:%f \n", sensor.heading(degrees));
     vex::task::sleep(1000);
     printf("After Sensor Heading:%f \n", sensor.heading(degrees));
 }
 
+// The function to move the drivetrain a specific amount of inches.
+
+/*
+Documentation:
+
+First value: The amount of inches to move. Use negative to go reverse.
+Second value: The speed in percent to move at.
+*/
 void move(double inches, double speed)
 {
     double futurePosition = calculateFuturePosition(inches);
     while (true)
     {
+        // Move forward until a wheel is at the right angle.
         if (inches > 0)
         {
             driveForward(forward, speed, percent);
@@ -49,28 +63,32 @@ void move(double inches, double speed)
     }
 }
 
-int debugCount = 0;
+// Function to turn a specific amount of degrees.
+
+/*
+Documentation:
+
+First value: The amount of degrees to turn. Use negative to go left.
+Second value: The speed to turn at.
+*/
 void turnDegrees(double angle, double speed)
 {
-    debugCount = 0;
-    // right is positive, left is negative
     double target = sensor.rotation(degrees) + angle;
-    if (angle > 0) {
-        while (sensor.rotation(degrees) < target) {
-            // if (debugCount++ % 20 == 0) {
-            //     printf("Right Turn:%f \n", sensor.rotation(degrees));
-            // }
+    // Turn the robot until at the right angle.
+    if (angle > 0)
+    {
+        while (sensor.rotation(degrees) < target)
+        {
             turn(true, speed, percent);
             vex::task::sleep(10);
         }
         printf("Stopped \n");
         stopDrivetrain();
-    } else if (angle < 0) {
+    }
+    else if (angle < 0)
+    {
         while (sensor.rotation(degrees) > target)
         {
-            // if (debugCount++ % 20 == 0) {
-            //     printf("Left Turn:%f \n", sensor.rotation(degrees));
-            // }
             turn(false, speed, percent);
             vex::task::sleep(10);
         }
@@ -79,19 +97,24 @@ void turnDegrees(double angle, double speed)
     }
 }
 
+// Skills auton function.
 void skillsAuton()
 {
+    printf("Running Skills\n");
     move(4, 15);
     turnDegrees(-100, 10);
     move(-2, 30);
     shooter.spin(forward, 95, percent);
 }
 
+// Normal auton function.
 void auton()
 {
+    printf("Running Auton\n");
     move(-15, 100);
 }
 
+// Function to test turn error at differen speeds.
 void testTurn(double angle, double speed)
 {
     double currentRotation = sensor.rotation(degrees);
@@ -102,6 +125,8 @@ void testTurn(double angle, double speed)
     printf("Speed:%f Before:%f After:%f Turn Error:%f \n", speed, currentRotation, afterRotation, error);
 }
 
+
+// Function to find the best speed with the least error.
 void testAuton()
 {
     testTurn(180, 10);
