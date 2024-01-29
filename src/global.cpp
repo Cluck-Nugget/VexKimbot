@@ -8,6 +8,8 @@
 // Function to initialize the bot.
 void init()
 {
+  brain1.Screen.print("6636A RoboWaves!!!!!");
+
   vexcodeInit();
   drivetrainInit();
   intakeInit();
@@ -141,8 +143,8 @@ void driveControl()
   while (true)
   {
     motorControl(1, 1, 5);
-    intakeControl(0.9, 0.9);
-    shooterControl(0.7);
+    intakeControl(1, 1);
+    shooterControl(1);
     task::sleep(10);
   }
 }

@@ -101,10 +101,7 @@ void turnDegrees(double angle, double speed)
 void skillsAuton()
 {
     printf("Running Skills\n");
-    move(4, 15);
-    turnDegrees(-100, 10);
-    move(-2, 30);
-    shooter.spin(forward, 95, percent);
+    shooter.spin(forward, 100, percent);
 }
 
 // Normal auton function.
