@@ -8,34 +8,22 @@
 #include "drivetrain.h"
 #include "intake.h"
 #include "shooter.h"
+#include "autonomous.h"
+#include "global.h"
 
 using namespace vex;
 
-// Function to initialize the bot.
-void init()
-{
-  vexcodeInit();
-  drivetrainInit();
-  intakeInit();
-  shooterInit();
-  // Misto kim!!!!
-  brain1.Screen.print("6636A");
-  brain1.Screen.newLine();
-  brain1.Screen.print("Misto kim!!!");
-}
+competition comp;
 
 // Main function that runs when the program starts.
 int main()
 {
+  printf("Test\n");
   // Initialize the robot.
   init();
   // Go into main loop that allows you to control all functions of the robot.
-  while (true)
-  {
-    motorControl(1, 1, 5);
-    intakeControl(0.9, 0.9);
-    shooterControl(0.7);
-    task::sleep(10);
-  }
-  return 0;
+  comp.autonomous(skillsAuton);
+  comp.drivercontrol(driveControl);
+  // auton();
+  // return 0;
 }

@@ -5,9 +5,11 @@
 
 #include "vex.h"
 #include "intake.h"
+#include "global.h"
 
 // Function to initialize the intake motor.
-void intakeInit() {
+void intakeInit()
+{
   // Reset the intake position.
   intake.resetPosition();
   // Set the stopping method of the intake motor to coast.
@@ -17,6 +19,7 @@ void intakeInit() {
 // Function to be able to control the intake.
 
 // Documentation:
+
 // First value: Should be inbetween 0 and 1 to represent intake speed.
 // Second value: Should be inbetween 0 and 1 to represent outtake speed.
 void intakeControl(float intakeSpeed, float outtakeSpeed)
